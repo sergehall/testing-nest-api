@@ -25,14 +25,10 @@ export class SendCodeByRegistrationUseCase
         to: command.emailAndCode.email,
         from: this.configService.get('mail.NODEMAILER_EMAIL'),
         subject: 'Registration by confirmation code',
-        template: 'index',
-        text: 'Welcome', // plaintext body
-        html: `
-      <h1 style="color: dimgrey">Click on the link below to confirm your email address.</h1>
-       <div><a style="font-size: 20px; text-decoration-line: underline" href=${fullURL}> Push link to confirm email.</a></div>`,
+        template: './index',
         context: {
-          name: command.emailAndCode.createdAt,
           fullURL,
+          login: command.emailAndCode.login,
         },
       })
       .then((success) => {

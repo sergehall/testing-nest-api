@@ -28,6 +28,7 @@ export class RegistrationUserUseCase
     const newConfirmationCode: EmailConfimCodeEntity = {
       id: uuid4().toString(),
       email: newInstance.email,
+      login: newInstance.login,
       confirmationCode: newInstance.emailConfirmation.confirmationCode,
       createdAt: new Date().toISOString(),
     };

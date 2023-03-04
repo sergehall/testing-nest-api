@@ -54,6 +54,7 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
     @Ip() ip: string,
   ): Promise<AccessToken> {
+    console.log(ip);
     const currentUserDto: CurrentUserDto = req.user;
     const userAgent = req.get('user-agent') || 'None';
     const signedToken = await this.commandBus.execute(

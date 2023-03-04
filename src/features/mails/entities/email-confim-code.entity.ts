@@ -13,6 +13,12 @@ export class EmailConfimCodeEntity {
   @Matches('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')
   email: string;
   @IsNotEmpty()
+  @Length(3, 10, {
+    message: 'Incorrect login length! Must be min 3, max 10 ch.',
+  })
+  @Matches('^[a-zA-Z0-9_-]*$')
+  login: string;
+  @IsNotEmpty()
   @Length(0, 100, {
     message: 'Incorrect login length! Must be max 100 ch.',
   })

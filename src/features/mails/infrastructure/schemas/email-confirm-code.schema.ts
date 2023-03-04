@@ -9,6 +9,8 @@ export class EmailsConfirmCode {
   @Prop({ required: true })
   email: string;
   @Prop({ required: true })
+  login: string;
+  @Prop({ required: true })
   confirmationCode: string;
   @Prop({ required: true })
   createdAt: string;

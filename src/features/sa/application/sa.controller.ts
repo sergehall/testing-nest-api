@@ -47,23 +47,6 @@ export class SaController {
     private commandBus: CommandBus,
   ) {}
 
-  @Get('users')
-  @UseGuards(BaseAuthGuard)
-  @UseGuards(AbilitiesGuard)
-  @CheckAbilities({ action: Action.READ, subject: User })
-  async saFindUsers(@Query() query: any) {
-    const queryData = ParseQuery.getPaginationData(query);
-    const searchLoginTerm = { searchLoginTerm: queryData.searchLoginTerm };
-    const searchEmailTerm = { searchEmailTerm: queryData.searchEmailTerm };
-    const banStatus = { banStatus: queryData.banStatus };
-    const queryPagination: PaginationDto = queryData.queryPagination;
-    return this.usersService.findUsers(queryPagination, [
-      searchLoginTerm,
-      searchEmailTerm,
-      banStatus,
-    ]);
-  }
-
   @Get('blogs')
   @UseGuards(BaseAuthGuard)
   @UseGuards(AbilitiesGuard)
@@ -115,6 +98,23 @@ export class SaController {
         banReason: saUser.banInfo.banReason,
       },
     };
+  }
+
+  @Get('users')
+  @UseGuards(BaseAuthGuard)
+  @UseGuards(AbilitiesGuard)
+  @CheckAbilities({ action: Action.READ, subject: User })
+  async saFindUsers(@Query() query: any) {
+    const queryData = ParseQuery.getPaginationData(query);
+    const searchLoginTerm = { searchLoginTerm: queryData.searchLoginTerm };
+    const searchEmailTerm = { searchEmailTerm: queryData.searchEmailTerm };
+    const banStatus = { banStatus: queryData.banStatus };
+    const queryPagination: PaginationDto = queryData.queryPagination;
+    return this.usersService.findUsers(queryPagination, [
+      searchLoginTerm,
+      searchEmailTerm,
+      banStatus,
+    ]);
   }
 
   @Delete('users/:id')

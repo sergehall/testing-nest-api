@@ -32,6 +32,7 @@ export class UpdateSentConfirmationCodeUseCase
         const newEmailConfirmationCode = {
           id: uuid4().toString(),
           email: user.email,
+          login: user.login,
           confirmationCode: user.emailConfirmation.confirmationCode,
           createdAt: new Date().toISOString(),
         };
